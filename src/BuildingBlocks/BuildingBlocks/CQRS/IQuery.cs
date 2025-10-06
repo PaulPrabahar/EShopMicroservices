@@ -2,7 +2,7 @@
 
 namespace BuildingBlocks.CQRS;
 
-public interface IQuery<TResponce>:IRequest<TResponce>
+public interface IQuery<out TResponce>:IRequest<TResponce>
     where TResponce : notnull
 {
 

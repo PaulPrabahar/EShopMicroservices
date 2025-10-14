@@ -17,8 +17,6 @@ public class GetProductByCatagoryQueryHandler(IDocumentSession session, ILogger<
             .Where(p => p.Category
             .Contains(query.catagory))
             .ToListAsync();
-        if (product is null)
-            throw new ProductNotFoundException();
 
         return new GetProductByCatagoryResult(product);
     }

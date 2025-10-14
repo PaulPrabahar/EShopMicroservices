@@ -1,4 +1,5 @@
 using BuildingBlocks.Behaviours;
+using BuildingBlocks.Exceptions;
 using Catalog.Api;
 using FluentValidation;
 
@@ -16,6 +17,7 @@ builder.Services.AddMarten(otps =>
 {
     otps.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 // Register Mapster mappings
 MapsterConfig.RegisterMappings();
@@ -23,5 +25,6 @@ MapsterConfig.RegisterMappings();
 var app = builder.Build();
 
 app.MapCarter();
+app.UseExceptionHandler(options => { });
 
 app.Run();

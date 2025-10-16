@@ -1,4 +1,5 @@
 ﻿using Catalog.Api.Products.DelecteProduct;
+using Catalog.Api.Products.GetProducts;
 using Catalog.Api.Products.UpdateProduct;
 
 namespace Catalog.Api;
@@ -11,6 +12,10 @@ public class MapsterConfig
             .Map(dest => dest.isSuccess, src => src.isSuccess);
         TypeAdapterConfig<DeleteProductResult, DeleteProductResponse>.NewConfig()
             .Map(dest => dest.isSuccess, src => src.isSuccess);
-
+        TypeAdapterConfig<GetProductsRequest, GetProductsQuery>.NewConfig()
+            .Map(dest => dest.pageNumber,src => src.pageNumber)
+            .Map(dest => dest.pageSize, src => src.pageSize);
+        
+            
     }
 }

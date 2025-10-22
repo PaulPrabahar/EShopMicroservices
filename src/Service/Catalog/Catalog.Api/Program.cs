@@ -14,6 +14,7 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssemblies(assembly);
     config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+    config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
 });
 builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddCarter();
@@ -29,6 +30,7 @@ builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 // Register Mapster mappings
 MapsterConfig.RegisterMappings();
+
 builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
 
 var app = builder.Build();

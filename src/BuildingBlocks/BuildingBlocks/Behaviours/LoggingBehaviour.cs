@@ -1,15 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildingBlocks.Behaviours;
 
-public class LoggingBehaviour<TRequest, TResponse>(ILogger<LoggingBehaviour<TRequest, TResponse>> logger) : 
+public class LoggingBehaviour<TRequest, TResponse>(ILogger<LoggingBehaviour<TRequest, TResponse>> logger) :
     IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull, IRequest<TResponse>
     where TResponse : notnull
@@ -18,9 +13,9 @@ public class LoggingBehaviour<TRequest, TResponse>(ILogger<LoggingBehaviour<TReq
     {
         //log request and responce information.
         logger
-            .LogInformation("[START] Handle request={Request} - Response={Response} - RequestData={RequestData}", 
-            typeof(TRequest).Name, 
-            typeof(TResponse).Name, 
+            .LogInformation("[START] Handle request={Request} - Response={Response} - RequestData={RequestData}",
+            typeof(TRequest).Name,
+            typeof(TResponse).Name,
             request);
 
         //time caluculation of responnce

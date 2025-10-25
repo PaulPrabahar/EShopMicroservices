@@ -2,6 +2,10 @@ services:
   catalogdb:
     image: postgres
     networks: [catalog]
+  
+  basketdb:
+    image: postgres
+    networks: [basket]
 
 
   catalog.api:
@@ -13,6 +17,9 @@ services:
 
 networks:
   catalog:
+  basket:
+
 volumes:
   postgres_catalog:
+  postgres_basket:
 

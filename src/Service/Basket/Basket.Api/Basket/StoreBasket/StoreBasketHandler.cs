@@ -1,9 +1,10 @@
 ﻿
+using Basket.Api.Data;
 using FluentValidation;
 
 namespace Basket.Api.Basket.StoreBasket;
 public record StoreBasketCommand(ShoppingCart Cart):ICommand<StoreBasketResult>;
-public record StoreBasketResult(string userName);
+public record StoreBasketResult(string UserName);
 
 public class StoreBasketCommandValidators : AbstractValidator<StoreBasketCommand>
 {
@@ -14,10 +15,11 @@ public class StoreBasketCommandValidators : AbstractValidator<StoreBasketCommand
     }
 }
 
-public class StoreBasketHandler : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+public class StoreBasketHandler(IBasketRepository repository) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
-    public Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
+    public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await repository.StoreBasket(command.Cart);
+        return new StoreBasketResult(command.Cart.UserName);
     }
 }

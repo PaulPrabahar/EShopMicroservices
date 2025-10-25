@@ -2,7 +2,7 @@
 namespace Basket.Api.Basket.DeleteBasket;
 
 //public record DeleteBasketRequest();
-public record DeleteBasketResponse();
+public record DeleteBasketResponse(bool Success);
 
 public class DeleteBasketEndpoint : ICarterModule
 {
